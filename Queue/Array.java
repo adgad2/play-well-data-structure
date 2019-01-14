@@ -44,18 +44,18 @@ public class Array<E> { //<>里指存放E这种数据类型
 
     //在index这个位置插入一个新元素e
     public void add(int index,E e){
-        if (size==data.length){
-            throw new IllegalArgumentException("AddLast failed.Array is full");
-        }
 
         if (index < 0 || index > size){
             throw new IllegalArgumentException("AddLast failed.Require index>=0 and index <= size.");
         }
 
+        if (size==data.length){
+            resize(2 * data.length);
+        }
+
         for (int i=size-1;i>=index;i--){
             data[i+1]=data[i];
         }
-
 
         data[index]=e;
         size++;
@@ -132,6 +132,14 @@ public class Array<E> { //<>里指存放E这种数据类型
         if (index!=-1){
             remove(index);
         }
+    }
+
+    private void resize(int newCapacity) {
+        E[] newData=(E[]) new Object[newCapacity];
+        for (int i=0;i<size;i++){
+            newData[i] = data[i];
+        }
+        data=newData;
     }
 
     @Override
