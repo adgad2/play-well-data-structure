@@ -1,4 +1,4 @@
-package LinkedList;
+package Stack;
 
 public class LinkedList<E> {
 
@@ -63,6 +63,7 @@ public class LinkedList<E> {
         prev.next=new Node(e,prev.next);
 
         size++;
+
 
     }
 
