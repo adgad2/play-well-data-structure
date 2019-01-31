@@ -30,7 +30,7 @@ public class LinkedList<E> {
     int size;
 
     public LinkedList(){
-        dummyHead=new Node(null,null);
+        dummyHead=null;
         size=0;
     }
 
@@ -52,18 +52,32 @@ public class LinkedList<E> {
         if (index<0 || index>size)
             throw new IllegalArgumentException("add faild,Illegal index");
 
-        Node prev=dummyHead;
-        //这个循环在移动prev来寻找index的前一位
-        for (int i=0;i<index;i++){
-            prev=prev.next;
-        }
-        //          Node node=new Node(e);
-//          node.next=prev.next;
-//          prev.next=node;
-        prev.next=new Node(e,prev.next);
+        add(dummyHead,0,index,e);
+//        Node prev=dummyHead;
+//        //这个循环在移动prev来寻找index的前一位
+//        for (int i=0;i<index;i++){
+//            prev=prev.next;
+//        }
+//
+//        prev.next=new Node(e,prev.next);
 
         size++;
 
+    }
+
+    public void add(Node node,int index,int target,E e){
+
+        if (index==target && target==0){
+            dummyHead=new Node(e,node);
+            return;
+        }
+
+        if (index==target-1){
+            node.next=new Node(e,node.next);
+            return;
+        }
+
+        add(node.next,++index,target,e);
     }
 
     //在链表头添加新的元素e
@@ -103,7 +117,7 @@ public class LinkedList<E> {
         if (index<0 || index>size)
             throw new IllegalArgumentException("set failed,Illegal index");
 
-        Node cur=dummyHead.next;
+        Node cur=dummyHead;
         for (int i=0;i<index;i++){
             cur=cur.next;
         }
@@ -154,7 +168,7 @@ public class LinkedList<E> {
     public String toString(){
         StringBuilder res=new StringBuilder();
 
-        Node cur=dummyHead.next;
+        Node cur=dummyHead;
         while (cur!=null){
             res.append(cur+"->");
             cur=cur.next;

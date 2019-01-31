@@ -10,15 +10,15 @@ public class Main {
             System.out.println(linkedList);
         }
 
-        linkedList.add(2, 666);;
+        linkedList.add(2, 666);
         System.out.println(linkedList);
 
-        linkedList.remove(2);
-        System.out.println(linkedList);
-
-         linkedList.set(2,333);
-        System.out.println(linkedList);
-        linkedList.removeLast();
-        System.out.println(linkedList);
+//        linkedList.remove(2);
+//        System.out.println(linkedList);
+//
+//         linkedList.set(2,333);
+//        System.out.println(linkedList);
+//        linkedList.removeLast();
+//        System.out.println(linkedList);
     }
 }
