@@ -10,7 +10,13 @@ public class Main {
         }
 
 //        bst.preOrder();
-        System.out.println(bst);
+//        System.out.println(bst);
+//
+//        bst.preOrderNR();
+
+        bst.removeMax();
+        bst.levelOrder();
+
     }
 
 
