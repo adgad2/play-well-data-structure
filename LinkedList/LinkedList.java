@@ -52,33 +52,19 @@ public class LinkedList<E> {
         if (index<0 || index>size)
             throw new IllegalArgumentException("add faild,Illegal index");
 
-        add(dummyHead,0,index,e);
-//        Node prev=dummyHead;
-//        //这个循环在移动prev来寻找index的前一位
-//        for (int i=0;i<index;i++){
-//            prev=prev.next;
-//        }
-//
-//        prev.next=new Node(e,prev.next);
+        Node prev=dummyHead;
+        //这个循环在移动prev来寻找index的前一位
+        for (int i=0;i<index;i++){
+            prev=prev.next;
+        }
+
+        prev.next=new Node(e,prev.next);
 
         size++;
 
     }
 
-    public void add(Node node,int index,int target,E e){
 
-        if (index==target && target==0){
-            dummyHead=new Node(e,node);
-            return;
-        }
-
-        if (index==target-1){
-            node.next=new Node(e,node.next);
-            return;
-        }
-
-        add(node.next,++index,target,e);
-    }
 
     //在链表头添加新的元素e
     public void addFirst(E e){
