@@ -88,6 +88,59 @@ public class BTSMap<K extends Comparable<K>,V> implements Map<K,V> {
         node.val=val;
     }
 
+    //返回以node为根的二分搜索树的最小值所在的节点
+    private Node minimun(Node node){
+        if (node.left==null)
+            return node;
+        return minimun(node.left);
+    }
+
+    //从二分搜索树中删除最小值所在的节点，返回最小值
+    private Node removeMin(Node node){
+       if (node.left==null){
+           Node rightNode=node.right;
+           node.right=null;
+           size--;
+           return rightNode;
+       }
+
+       node.left=removeMin(node.left);
+       return node;
+    }
+
+    //从集合中删除为key的节点
+    @Override
+    public V remove(K key){
+        Node node=getNode(root,key);
+        if (node!=null){
+            remove(root,key);
+            return node.val;
+        }
+
+        return null;
+
+    }
+
+    //删除掉以node为根的二分搜索树中键为key的节点，递归算法
+    //返回删除节点后新的二分搜索树的根
+    private Node remove(Node node, K key) {
+        if (node==null)
+            return null;
+
+        if (key.compareTo(node.key)<0){
+            node.left=remove(node.left,key);
+            return node;
+        }
+        else if (key.compareTo(node.key)>0){
+            node.right=remove(node.right,key);
+            return node;
+        }else {//key.compareTo(node.key)==0
+
+            if (node.left==null){
+                
+            }
+        }
+    }
 
 
 }
